@@ -30,6 +30,8 @@ public class Employee implements Serializable {
 
     private String idNumber;
 
+    // 以上是前端传入的，可以用beanutils直接拷贝。以下要自己设置一下。
+
     private Integer status;
 
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
