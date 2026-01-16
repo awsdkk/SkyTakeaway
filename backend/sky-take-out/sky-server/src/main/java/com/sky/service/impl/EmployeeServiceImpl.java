@@ -84,14 +84,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         // 设置新增默认密码为123456 并进行md5加密 PasswordConstant密码常量
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
 
-        // 设置创建时间和更新时间为当前时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-
-        // 设置创建人和更新人 为当前登录用户的id
-        // TODO 后期需要从登录状态中获取当前登录用户的id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        // 设置创建时间和更新时间为当前时间 现在不需要自己set了
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//
+//        // 设置创建人和更新人 为当前登录用户的id
+//        // TODO 后期需要从登录状态中获取当前登录用户的id
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         // 调用mapper层的insert方法 新增员工
         employeeMapper.insert(employee);
@@ -159,8 +159,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         // 对象属性拷贝 employee -> DTO
         BeanUtils.copyProperties(employeeDTO,employee);
 
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        // 利用注解后不需要了
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.update(employee);
     }
