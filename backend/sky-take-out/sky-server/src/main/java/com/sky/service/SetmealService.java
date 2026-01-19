@@ -2,8 +2,10 @@ package com.sky.service;
 
 import com.sky.annotation.AutoFill;
 import com.sky.dto.SetmealDTO;
+import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.enumeration.OperationType;
+import com.sky.result.PageResult;
 
 public interface SetmealService {
 
@@ -19,4 +21,11 @@ public interface SetmealService {
      */
     @AutoFill(OperationType.INSERT)
     void insert(Setmeal setmeal);
+
+    /**
+     * 套餐里的分页查询
+     * @param setmealPageQueryDTO
+     * @return
+     */
+    PageResult pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
 }
