@@ -58,10 +58,10 @@ public class AutoFillAspect {
         if(operationType.equals(OperationType.INSERT)){
             // 为插入操作 赋值
             try {
-                entity.getClass().getDeclaredField(AutoFillConstant.SET_CREATE_TIME).set(entity, localDateTime);
-                entity.getClass().getDeclaredField(AutoFillConstant.SET_CREATE_USER).set(entity, localDateTime);
-                entity.getClass().getDeclaredField(AutoFillConstant.SET_UPDATE_TIME).set(entity, currentId);
-                entity.getClass().getDeclaredField(AutoFillConstant.SET_UPDATE_USER).set(entity, currentId);
+                entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_TIME, LocalDateTime.class).invoke(entity, localDateTime);
+                entity.getClass().getDeclaredMethod(AutoFillConstant.SET_CREATE_USER, Long.class).invoke(entity, currentId);
+                entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class).invoke(entity, localDateTime);
+                entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class).invoke(entity, currentId);
             } catch (Exception e) {
                 e.printStackTrace();
                 log.error("为插入操作 赋值 失败", e);
@@ -69,8 +69,8 @@ public class AutoFillAspect {
         }else if(operationType.equals(OperationType.UPDATE)){
             // 为更新操作 赋值
             try {
-                entity.getClass().getDeclaredField(AutoFillConstant.SET_UPDATE_TIME).set(entity, localDateTime);
-                entity.getClass().getDeclaredField(AutoFillConstant.SET_UPDATE_USER).set(entity, currentId);
+                entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class).invoke(entity, localDateTime);
+                entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class).invoke(entity, currentId);
             } catch (Exception e) {
                 e.printStackTrace();
                 log.error("为更新操作 赋值 失败", e);
