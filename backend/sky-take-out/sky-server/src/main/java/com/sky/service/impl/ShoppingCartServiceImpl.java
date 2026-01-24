@@ -97,6 +97,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return list;
     }
 
+     /**
+      * 清空购物车
+      * @param shoppingCartDTO
+      */
+    @Override
+    public void cleanShoppingCart(ShoppingCartDTO shoppingCartDTO) {
+        // 获取当前用户id
+        Long userId = BaseContext.getCurrentId();
+        // 删除购物车
+        shoppingCartMapper.deleteByUserId(userId);
+    }
+
 
 }
 
