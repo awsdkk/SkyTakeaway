@@ -57,7 +57,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      */
     @Bean
     public Docket docketAdmin() {
-        log.info("准备接口生成文档..");
+        log.info("准备管理员接口生成文档..");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("苍穹外卖项目接口文档")
                 .version("2.0")
@@ -79,7 +79,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      */
     @Bean
     public Docket docketUser() {
-        log.info("准备接口生成文档..");
+        log.info("准备用户接口生成文档..");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("苍穹外卖项目接口文档")
                 .version("2.0")
