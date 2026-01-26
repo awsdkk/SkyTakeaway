@@ -493,6 +493,30 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.update(orders);
     }
 
+    /**
+     * 用户催单
+     * @param id 订单id
+     */
+    @Override
+    public void reminder(Long id) {
+        // 根据id查询订单
+        Orders ordersDB = orderMapper.getById(id);
+        // 校验订单状态
+        if (ordersDB == null) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
+
+        Map map = new HashMap();
+        map.put("orderId", id);
+        map.put("type", 2); // 2表示用户催单 1表示来单提醒
+        map.put("content", "订单号：" + ordersDB.getNumber());
+        String json = JSON.toJSONString(map);
+        // 向所有客户端发送消息
+        webSocketServer.sendToAllClient(json);
+
+    }
+
+
 
     // 以下为方法体中其他公有方法所使用到的私有方法 ================================
 
