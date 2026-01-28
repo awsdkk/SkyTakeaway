@@ -55,6 +55,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         Integer totalOrderCount = orderMapper.countByMap(map);
 
         map.put("status", Orders.COMPLETED);
+
         //营业额
         Double turnover = orderMapper.sumByMap(map);
         turnover = turnover == null? 0.0 : turnover;
@@ -72,7 +73,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
             unitPrice = turnover / validOrderCount;
         }
 
-        //新增用户数
+        //用户数
         Integer newUsers = userMapper.countByMap(map);
 
         return BusinessDataVO.builder()
